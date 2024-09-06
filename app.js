@@ -25,24 +25,46 @@ let images = [
 //step 1: select the DOM elements that will contain my images
 //select the thumbnail container
 //select the main image container
+const thumbnailContainer = document.getElementById("thumbnail-container");
+let currentImageIndex = 0;
+const mainImageContainer = document.getElementById("main-image-container");
 
+function init() {
+  console.log(images);
+  updateDisplayImage(images[currentImageIndex]);
+  createThumbnails();
+}
 //step 2: we are going to write a function to create the images in our thumbnail
 
 function createThumbnails(thumbnailContainer) {
-  //we need a loop to run through the array of images and create an instance of each of them
-  thumbnailContainer.forEach(function (thumbnail, index) {
-    //a document method to create a DOM element to contain my image information(<img>)
-    //assign a value to the image attributes (src, alt, width, height) -> img.src = "value"
-    //optional: you can also give each image a classname
-    //append the new images to the DOM container
-    //add an event listener to each iamge, so when the user clicks, the big image shows on the screen
-    //function eventHandler(){
-    //when the user clicks the image, we are going to call the function that creates the big image
-    createLargeImage(thumbnail[index]);
-    //}
-    //thumbnail.addEventListener("click", event handler)
+  thumbnailContainer.forEach(function (thumbnail) {
+    let smallImage = document.createElement("img", "0");
+    smallImage.setAttribute("src", image.src);
+    smallImage.setAttribute("alt", image.alt);
+    smallImage.setAttribute("tabindex", "0");
+    thumbnailContainer.appendChild(image);
+    smallImage.addEventListener("click", function () {
+      updateDisplayImage(image);
+      document.getElementById("announcer").textContent = image.alt;
+    });
+    smallImage.addEventListener("keydown", function (event) {
+      document.getElementById("announcer").textContent = image.alt;
+      if (event.key === "Enter") updateDisplayImage;
+    });
   });
 }
+
+//we need a loop to run through the array of images and create an instance of each of them
+//a document method to create a DOM element to contain my image information(<img>)
+//assign a value to the image attributes (src, alt, width, height) -> img.src = "value"
+//optional: you can also give each image a classname
+//append the new images to the DOM container
+//add an event listener to each image, so when the user clicks, the big image shows on the screen
+//function eventHandler(){
+//when the user clicks the image, we are going to call the function that creates the big image
+createLargeImage(thumbnail[index]);
+//}
+//thumbnail.addEventListener("click", event handler)
 
 //step3: we need to write a function to create the big image
 function createLargeImage(largeImage) {
