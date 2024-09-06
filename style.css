@@ -1,0 +1,9 @@
+/* css reset link */
+
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+
+* {
+  background-color: coral;
+}
+
+/* make sure you use media queries */
