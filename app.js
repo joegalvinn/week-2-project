@@ -28,36 +28,43 @@ let images = [
 //select the thumbnail container
 //select the main image container
 const thumbnailContainer = document.getElementById("thumbnail-container");
+console.log(thumbnailContainer);
 let currentImageIndex = 0;
 const mainImageContainer = document.getElementById("main-image-container");
+console.log(mainImageContainer);
 
 function init() {
   console.log(images);
-  updateDisplayImage(images[currentImageIndex]);
-  createThumbnails();
+  createThumbnails(thumbnailContainer);
+  updateMainImage(images[currentImageIndex]);
 }
 //step 2: we are going to write a function to create the images in our thumbnail
 
 function createThumbnails(thumbnailContainer) {
-  thumbnailContainer.forEach(function (thumbnail, index) {
-    let smallImage = document.createElement("img", "0");
+  images.forEach(function (image, index) {
+    let smallImage = document.createElement("img");
     smallImage.setAttribute("src", image.src);
     smallImage.setAttribute("alt", image.alt);
     smallImage.setAttribute("tabindex", "0");
-    thumbnailContainer.appendChild(image);
+    smallImage.width = 100;
+    smallImage.height = 100;
+    thumbnailContainer.appendChild(smallImage);
     smallImage.addEventListener("click", function () {
       updateDisplayImage(image);
-      document.getElementById("announcer").textContent = image.alt;
+      document.getElementById("announcer").textContent = thumbnail.alt;
     });
     smallImage.addEventListener("keydown", function (event) {
-      document.getElementById("announcer").textContent = image.alt;
-      if (event.key === "Enter") updateDisplayImage;
+      if (event.key === "Enter") updateDisplayImage(thumbnail);
+      {
+        document.getElementById("announcer").textContent = image.alt;
+      }
     });
   });
-  console.log(smallImage);
 }
 
-console.log(createLargeImage);
+// createThumbnails(thumbnailContainer);
+
+window.onload = init;
 //we need a loop to run through the array of images and create an instance of each of them
 //a document method to create a DOM element to contain my image information(<img>)
 //assign a value to the image attributes (src, alt, width, height) -> img.src = "value"
@@ -73,14 +80,15 @@ console.log(createLargeImage);
 //thumbnail.addEventListener("click", event handler)
 
 //step3: we need to write a function to create the big image
-function createLargeImage(largeImage) {
-  //!you will find a problem here - need to make image being replaced disappear
-  // set the innerHTML = ""
-  //
-  //create an img element
-  //optional: give images a classname
-  //set src value
-  //set alt value
-  //append large img to the DOM
-  //dont need a loop for the large images
-}
+
+// function createLargeImage(largeImage) {}
+
+//!you will find a problem here - need to make image being replaced disappear
+// set the innerHTML = ""
+//
+//create an img element
+//optional: give images a classname
+//set src value
+//set alt value
+//append large img to the DOM
+//dont need a loop for the large images
