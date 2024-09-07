@@ -1,5 +1,7 @@
 console.log("hello!");
 
+console.dir(document);
+
 //we are going to create a place to store our images
 let images = [
   {
@@ -37,7 +39,7 @@ function init() {
 //step 2: we are going to write a function to create the images in our thumbnail
 
 function createThumbnails(thumbnailContainer) {
-  thumbnailContainer.forEach(function (thumbnail) {
+  thumbnailContainer.forEach(function (thumbnail, index) {
     let smallImage = document.createElement("img", "0");
     smallImage.setAttribute("src", image.src);
     smallImage.setAttribute("alt", image.alt);
@@ -52,8 +54,10 @@ function createThumbnails(thumbnailContainer) {
       if (event.key === "Enter") updateDisplayImage;
     });
   });
+  console.log(smallImage);
 }
 
+console.log(createLargeImage);
 //we need a loop to run through the array of images and create an instance of each of them
 //a document method to create a DOM element to contain my image information(<img>)
 //assign a value to the image attributes (src, alt, width, height) -> img.src = "value"
@@ -62,7 +66,9 @@ function createThumbnails(thumbnailContainer) {
 //add an event listener to each image, so when the user clicks, the big image shows on the screen
 //function eventHandler(){
 //when the user clicks the image, we are going to call the function that creates the big image
-createLargeImage(thumbnail[index]);
+
+// createLargeImage(thumbnail[index]);
+
 //}
 //thumbnail.addEventListener("click", event handler)
 
