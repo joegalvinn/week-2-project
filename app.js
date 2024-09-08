@@ -22,6 +22,12 @@ let images = [
     width: 300,
     height: 200,
   },
+  {
+    src: "https://images.unsplash.com/photo-1581316693711-a0bee730e97e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "A mouse balancing between two wheat stalks",
+    width: 300,
+    height: 200,
+  },
 ];
 
 //============================================================//
@@ -94,21 +100,22 @@ function updateMainImage(image) {
   // document.getElementById("announcer").textContent = image.alt;
 }
 
-next.addEventListener("click", function () {
-  selectNextImage(1);
-});
-prev.addEventListener("click", function () {
-  selectNextImage(-1);
-});
-
 function selectNextImage(index) {
   currentImageIndex += index;
 
   if (currentImageIndex >= images.length) currentImageIndex = 0;
   if (currentImageIndex < 0) currentImageIndex = images.length - 1;
   console.log(currentImageIndex);
-  updateDisplayImage(images[currentImageIndex]);
+  updateMainImage(images[currentImageIndex]);
 }
+
+//make buttons work how?
+next.addEventListener("click", function () {
+  selectNextImage(1);
+});
+prev.addEventListener("click", function () {
+  selectNextImage(-1);
+});
 
 // createLargeImage(thumbnail[index]);{
 
