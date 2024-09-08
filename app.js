@@ -16,6 +16,12 @@ let images = [
     width: 300,
     height: 200,
   },
+  {
+    src: "https://images.unsplash.com/photo-1581311478067-a006b708ed36?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    alt: "A mouse hiding inside a purple flower",
+    width: 300,
+    height: 200,
+  },
 ];
 
 //============================================================//
@@ -50,13 +56,13 @@ function createThumbnails(thumbnailContainer) {
     smallImage.height = 100;
     thumbnailContainer.appendChild(smallImage);
     smallImage.addEventListener("click", function () {
-      updateDisplayImage(image);
-      document.getElementById("announcer").textContent = thumbnail.alt;
+      updateMainImage(image);
+      // document.getElementById("announcer").textContent = image.alt;
     });
     smallImage.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") updateDisplayImage(thumbnail);
+      if (event.key === "Enter") updateMainImage(image);
       {
-        document.getElementById("announcer").textContent = image.alt;
+        // document.getElementById("announcer").textContent = image.alt;
       }
     });
   });
@@ -74,9 +80,40 @@ window.onload = init;
 //function eventHandler(){
 //when the user clicks the image, we are going to call the function that creates the big image
 
-// createLargeImage(thumbnail[index]);
+function updateMainImage(image) {
+  let liveDisplayImage = mainImageContainer.firstChild;
 
-//}
+  if (!liveDisplayImage) {
+    liveDisplayImage = document.createElement("img");
+    mainImageContainer.appendChild(liveDisplayImage);
+  }
+
+  liveDisplayImage.setAttribute("src", image.src);
+  liveDisplayImage.setAttribute("alt", image.alt);
+  // updateScrollBar(image);
+  // document.getElementById("announcer").textContent = image.alt;
+}
+
+next.addEventListener("click", function () {
+  selectNextImage(1);
+});
+prev.addEventListener("click", function () {
+  selectNextImage(-1);
+});
+
+function selectNextImage(index) {
+  currentImageIndex += index;
+
+  if (currentImageIndex >= images.length) currentImageIndex = 0;
+  if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+  console.log(currentImageIndex);
+  updateDisplayImage(images[currentImageIndex]);
+}
+
+// createLargeImage(thumbnail[index]);{
+
+// }
+
 //thumbnail.addEventListener("click", event handler)
 
 //step3: we need to write a function to create the big image
